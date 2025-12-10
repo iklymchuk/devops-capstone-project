@@ -1,21 +1,36 @@
-# devops-capstone-project
+# DevOps Capstone Project - Account Microservice
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Python 3.9](https://img.shields.io/badge/Python-3.9-green.svg)](https://shields.io/)
 
-This repository contains the DevOps project which is part of the [**IBM DevOps and Software Engineering Professional Certificate**](https://www.coursera.org/professional-certificates/devops-and-software-engineering)
+This repository contains a RESTful Account microservice developed as part of the IBM DevOps and Software Engineering Professional Certificate program. The service provides full CRUD operations for managing customer accounts with a PostgreSQL backend.
 
-## Usage
+## Overview
 
-You should use this template to start your DevOps Capstone project. It contains all of the code that you will need to get started.
+This microservice implements a complete REST API for account management, including:
+- Create new accounts
+- Read account details
+- Update existing accounts
+- Delete accounts
+- List all accounts
 
-Do Not fork this code! It is meant to be used by pressing the  <span style=color:white;background:green>**Use this Template**</span> button in GitHub. This will copy the code to your own repository with no connection back to the original repository like a fork would. This is what you want.
+The project demonstrates modern DevOps practices including Test Driven Development (TDD), containerization with Docker, Kubernetes deployment, and CI/CD automation with Tekton pipelines.
+
+## Technology Stack
+
+- **Framework**: Flask 2.1.2
+- **Database**: PostgreSQL with SQLAlchemy ORM
+- **Testing**: Nose, Factory Boy, Coverage
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes (K3D for local development)
+- **CI/CD**: Tekton Pipelines
+- **Code Quality**: Pylint, Flake8, Black
 
 ## Development Environment
 
-These labs are designed to be executed in the IBM Developer Skills Network Cloud IDE with OpenShift. Please use the links provided in the Coursera Capstone project to access the lab environment.
+These labs are designed to be executed in the IBM Developer Skills Network Cloud IDE with OpenShift. 
 
-Once you are in the lab environment, you can initialize it with `bin/setup.sh` by sourcing it. (*Note: DO NOT run this program as a bash script. It sets environment variable and so must be sourced*):
+Once you are in the lab environment, you can initialize it with `bin/setup.sh` by sourcing it. (*Note: DO NOT run this program as a bash script. It sets environment variables and so must be sourced*):
 
 ```bash
 source bin/setup.sh
@@ -23,7 +38,7 @@ source bin/setup.sh
 
 This will install Python 3.9, make it the default, modify the bash prompt, create a Python virtual environment and activate it.
 
-After sourcing it you prompt should look like this:
+After sourcing it, your prompt should look like this:
 
 ```bash
 (venv) theia:project$
@@ -90,9 +105,49 @@ The Account model contains the following fields:
 | phone_number | String(32) | True |
 | date_joined | Date | False |
 
-## Your Task
+## API Endpoints
 
-Complete this microservice by implementing REST API's for `READ`, `UPDATE`, `DELETE`, and `LIST` while maintaining **95%** code coverage. In true **Test Driven Development** fashion, first write tests for the code you "wish you had", and then write the code to make them pass.
+The microservice exposes the following REST API endpoints:
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Health check endpoint |
+| GET | `/` | Service information |
+| POST | `/accounts` | Create a new account |
+| GET | `/accounts` | List all accounts |
+| GET | `/accounts/{id}` | Read a specific account |
+| PUT | `/accounts/{id}` | Update an existing account |
+| DELETE | `/accounts/{id}` | Delete an account |
+
+## Running Tests
+
+The project maintains 95%+ code coverage through comprehensive unit tests. To run the test suite:
+
+## Running Tests
+
+The project maintains 95%+ code coverage through comprehensive unit tests. To run the test suite:
+
+```bash
+# Run all tests
+make test
+
+# Run tests with coverage report
+nosetests --with-coverage --cover-package=service
+```
+
+## Running the Service
+
+To start the service locally:
+
+```bash
+# Start the PostgreSQL database
+make db
+
+# Run the service
+flask run
+```
+
+The service will be available at `http://localhost:5000`.
 
 ## Local Kubernetes Development
 
@@ -122,9 +177,16 @@ Please only use these commands for working stand-alone on your own computer with
 
 You can now perform Tekton development locally, just like in the Cloud IDE lab environment.
 
+## CI/CD Pipeline
+
+The project includes Tekton pipeline definitions in the `tekton/` directory for automated:
+- Code linting and testing
+- Building Docker images
+- Deploying to Kubernetes/OpenShift
+
 ## Author
 
-[John Rofrano](https://www.coursera.org/instructor/johnrofrano), Senior Technical Staff Member, DevOps Champion, @ IBM Research, and Instructor @ Coursera
+**Ivan Klymchuk** - Based on the IBM DevOps Capstone Project template by [John Rofrano](https://www.coursera.org/instructor/johnrofrano)
 
 ## License
 
