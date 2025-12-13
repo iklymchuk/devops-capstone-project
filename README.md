@@ -194,4 +194,4 @@ Licensed under the Apache License. See [LICENSE](LICENSE)
 
 ## <h3 align="center"> © IBM Corporation 2022. All rights reserved. <h3/>
 
-<h4 style="text-align:center;">Built with ❤️ by Ivan Klymchuk</h4>
+<h4 align="center">Built with ❤️ by Ivan Klymchuk</h4>
